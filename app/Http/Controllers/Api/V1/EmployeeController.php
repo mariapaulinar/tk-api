@@ -18,7 +18,8 @@ class EmployeeController extends Controller
 
     public function index(): JsonResponse
     {
-        return response()->json($this->employeeService->getAllEmployees());
+        $employees = $this->employeeService->getAllEmployees();
+        return response()->json($employees);
     }
 
     public function show($id): JsonResponse

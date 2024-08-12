@@ -15,7 +15,38 @@ class EmployeeService
 
     public function getAllEmployees()
     {
-        return $this->employeeRepository->all();
+        $employees = $this->employeeRepository->getAllEmployees();
+
+        return $employees->map(function ($employee) {
+            return [
+                'id' => $employee->id,
+                'personal_id' => $employee->personal_id,
+                'first_name' => $employee->first_name,
+                'last_name' => $employee->last_name,
+                'full_name' => $employee->full_name,
+                'birth_date' => $employee->birth_date,
+                'age' => $employee->age,
+                'start_date' => $employee->start_date,
+                'seniority' => $employee->seniority,
+                'gender' => $employee->gender,
+                'company' => [
+                    'id' => $employee->company->id,
+                    'name' => $employee->company->name,
+                ],
+                'workplace' => [
+                    'id' => $employee->workplace->id,
+                    'name' => $employee->workplace->name,
+                ],
+                'position' => [
+                    'id' => $employee->position->id,
+                    'name' => $employee->position->name,
+                ],
+                'country' => [
+                    'id' => $employee->country->id,
+                    'name' => $employee->country->name,
+                ],
+            ];
+        });
     }
 
     public function getEmployeeById($id)

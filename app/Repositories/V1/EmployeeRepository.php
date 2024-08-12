@@ -6,9 +6,9 @@ use App\Models\V1\Employee;
 
 class EmployeeRepository
 {
-    public function all()
+    public function getAllEmployees()
     {
-        return Employee::all();
+        return Employee::with(['company:id,name', 'workplace:id,name', 'position:id,name', 'country:id,name'])->get();
     }
 
     public function find($id)
