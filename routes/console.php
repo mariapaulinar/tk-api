@@ -9,8 +9,7 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-Artisan::command('create-initial-user', function() {
-    $password = $this->secret('Ingresa la contraseña');
+Artisan::command('user:admin {password}', function(string $password) {
     if(!$password) {
         return $this->comment('No ingresaste un password. Intenta nuevamente.');
     }
